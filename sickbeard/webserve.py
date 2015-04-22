@@ -1361,7 +1361,7 @@ class ConfigProviders:
                       tvtorrents_digest=None, tvtorrents_hash=None,
                       torrentleech_key=None,
                       btn_api_key=None,
-                      newzbin_username=None, newzbin_password=None,t411_username=None,t411_password=None,ftdb_username=None,ftdb_password=None,addict_username=None,addict_password=None,fnt_username=None,fnt_password=None,libertalia_username=None,libertalia_password=None,xthor_username=None,xthor_password=None,thinkgeek_username=None,thinkgeek_password=None,   
+                      newzbin_username=None, newzbin_password=None,t411_username=None,t411_password=None,ftdb_username=None,ftdb_password=None,addict_username=None,addict_password=None,fnt_username=None,fnt_password=None,libertalia_username=None,libertalia_password=None,sotorrent_username=None,sotorrent_password=None,xthor_username=None,xthor_password=None,thinkgeek_username=None,thinkgeek_password=None,   
                       ethor_key=None,                      
                       provider_order=None):
 
@@ -1444,6 +1444,8 @@ class ConfigProviders:
                 sickbeard.FNT = curEnabled
             elif curProvider == 'libertalia':
                 sickbeard.LIBERTALIA = curEnabled   
+            elif curProvider == 'sotorrent':
+                sickbeard.SOTORRENT = curEnabled
             elif curProvider == 'xthor':
                 sickbeard.XTHOR = curEnabled  
             elif curProvider == 'thinkgeek':
@@ -1484,6 +1486,9 @@ class ConfigProviders:
 
         sickbeard.LIBERTALIA_USERNAME = libertalia_username
         sickbeard.LIBERTALIA_PASSWORD = libertalia_password
+
+        sickbeard.SOTORRENT_USERNAME = sotorrent_username
+        sickbeard.SOTORRENT_PASSWORD = sotorrent_password
         
         sickbeard.XTHOR_USERNAME = xthor_username
         sickbeard.XTHOR_PASSWORD = xthor_password
