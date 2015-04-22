@@ -48,29 +48,37 @@ class SOTORRENTProvider(generic.TorrentProvider):
     def isEnabled(self):
         return sickbeard.SOTORRENT
 
-    def getSearchParams(self, searchString, audio_lang, subcat, french=None):
+    def getSearchParams(self, searchString, audio_lang, subcat, french=None, season=None):
         """ 
-            @q string / exact for sphinx tool / c[NUMCAT]
+            @q string / exact for sphinx research / c[NUMCAT]
         """
-        if audio_lang == "en" and french==None:
-            self.params = urllib.urlencode({
-                'q': searchString,
-            })+"&c73=1&c75=1"
-        elif audio_lang == "fr" or french:
-            self.params =  urllib.urlencode({
-                'q': searchString,
-            })+"&c74=1&c72=1"
+        if(season):
+            if audio_lang == "en" and french==None:
+                self.params = urllib.urlencode({ 'q': searchString})+"&c85=1"
+            elif audio_lang == "fr" or french:
+                self.params = urllib.urlencode({ 'q': searchString})+"&71=1"
+            else:
+                self.params = urllib.urlencode({ 'q': searchString})+"&71=1&85=1"
         else:
-            self.params = urllib.urlencode({
-                'q': searchString,
-            })+"&c74=1&c72=1&c73=1&c75=1"  
+            if audio_lang == "en" and french==None:
+                self.params = urllib.urlencode({ 'q': searchString})+"&c73=1&c75=1"
+            elif audio_lang == "fr" or french:
+                self.params = urllib.urlencode({ 'q': searchString})+"&c74=1&c72=1"
+            else:
+                self.params = urllib.urlencode({ 'q': searchString})+"&c74=1&c72=1&c73=1&c75=1"  
 
         return self.params        
  
     def _get_season_search_strings(self, show, season):
         """
+            Don't find how to test this but seem working
         """
-        return []
+        results = []
+        possible_show = show_name_helpers.allPossibleShowNames(ep_obj.show)
+        list_show = set(possible_show)        
+        for show in list_show:
+            results.append(self.getSearchParams("+S%02d" % season, show.audio_lang, season))
+        return results
 
     def _get_episode_search_strings(self, ep_obj, french=None):
         """
