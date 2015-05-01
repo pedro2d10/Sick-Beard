@@ -99,7 +99,7 @@ var show_nzb_providers = #if $sickbeard.USE_NZBS then "true" else "false"#;
                                 <span class="component-title jumbo">Configure Provider:</span>
                                 <span class="component-desc">
                                     #set $provider_config_list = []
-                                    #for $cur_provider in ("omgwtfnzbs", "tvtorrents", "torrentleech", "btn", "binnewz", "t411", "ftdb", "addict", "fnt", "libertalia", "piratebay", "ethor", "thinkgeek", "xthor"):
+                                    #for $cur_provider in ("omgwtfnzbs", "tvtorrents", "torrentleech", "btn", "binnewz", "t411", "ftdb", "addict", "fnt", "libertalia", "sotorrent", "piratebay", "ethor", "thinkgeek", "xthor"):
                                         #set $cur_provider_obj = $sickbeard.providers.getProviderClass($cur_provider)
                                         #if $cur_provider_obj.providerType == $GenericProvider.NZB and not $sickbeard.USE_NZBS:
                                         	#continue
@@ -299,6 +299,21 @@ Nothing to set up for this provider
                             </label>
                         </div>
                     </div><!-- /libertaliaDiv //-->
+                    
+                     <div class="providerDiv" id="sotorrentDiv">
+                        <div class="field-pair">
+                            <label class="clearfix">
+                                <span class="component-title">So-torrent Username:</span>
+                                <input class="component-desc" type="text" name="sotorrent_username" value="$sickbeard.SOTORRENT_USERNAME" size="25" />
+                            </label>
+                        </div>
+                        <div class="field-pair">
+                            <label class="clearfix">
+                                <span class="component-title">So-torrent Password:</span>
+                                <input class="component-desc" type="password" name="sotorrent_password" value="$sickbeard.SOTORRENT_PASSWORD" size="25" />
+                            </label>
+                        </div>
+                    </div><!-- /sotorrentDiv //-->
                     
                     <div class="providerDiv" id="xthorDiv">
                         <div class="field-pair">

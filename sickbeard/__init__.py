@@ -30,7 +30,7 @@ from threading import Lock
 
 # apparently py2exe won't build these unless they're imported somewhere
 from sickbeard import providers, metadata
-from providers import ezrss, tvtorrents, torrentleech, btn, nzbsrus, newznab, womble, nzbx, omgwtfnzbs, binnewz, t411, ftdb, libertalia, tpi, fnt, addict, cpasbien, piratebay, gks, kat, ethor, xthor, thinkgeek
+from providers import ezrss, tvtorrents, torrentleech, btn, nzbsrus, newznab, womble, nzbx, omgwtfnzbs, binnewz, t411, ftdb, libertalia, sotorrent, tpi, fnt, addict, cpasbien, piratebay, gks, kat, ethor, xthor, thinkgeek
 from sickbeard.config import CheckSection, check_setting_int, check_setting_str, ConfigMigrator
 
 from sickbeard import searchCurrent, searchBacklog, showUpdater, versionChecker, properFinder, frenchFinder, autoPostProcesser, subtitles, traktWatchListChecker, SentFTPChecker
@@ -235,6 +235,10 @@ FNT_PASSWORD = None
 LIBERTALIA = False
 LIBERTALIA_USERNAME = None
 LIBERTALIA_PASSWORD = None
+
+SOTORRENT = False
+SOTORRENT_USERNAME = None
+SOTORRENT_PASSWORD = None
 
 XTHOR = False
 XTHOR_USERNAME = None
@@ -494,6 +498,7 @@ def initialize(consoleLogging=True):
                 ADDICT, ADDICT_USERNAME, ADDICT_PASSWORD, \
                 FNT, FNT_USERNAME, FNT_PASSWORD, \
                 LIBERTALIA, LIBERTALIA_USERNAME, LIBERTALIA_PASSWORD, \
+                SOTORRENT, SOTORRENT_USERNAME, SOTORRENT_PASSWORD, \
                 XTHOR, XTHOR_USERNAME, XTHOR_PASSWORD, \
                 THINKGEEK, THINKGEEK_USERNAME, THINKGEEK_PASSWORD, \
                 THEPIRATEBAY, THEPIRATEBAY_PROXY, THEPIRATEBAY_PROXY_URL, THEPIRATEBAY_TRUSTED, \
@@ -806,6 +811,11 @@ def initialize(consoleLogging=True):
         LIBERTALIA_USERNAME = check_setting_str(CFG, 'LIBERTALIA', 'username', '')
         LIBERTALIA_PASSWORD = check_setting_str(CFG, 'LIBERTALIA', 'password', '')
         
+        CheckSection(CFG, 'SOTORRENT')
+        SOTORRENT = bool(check_setting_int(CFG, 'SOTORRENT', 'sotorrent', 0))
+        SOTORRENT_USERNAME = check_setting_str(CFG, 'SOTORRENT', 'username', '')
+        SOTORRENT_PASSWORD = check_setting_str(CFG, 'SOTORRENT', 'password', '')
+
         CheckSection(CFG, 'XTHOR')
         XTHOR = bool(check_setting_int(CFG, 'XTHOR', 'xthor', 0))
         XTHOR_USERNAME = check_setting_str(CFG, 'XTHOR', 'username', '')
@@ -1572,6 +1582,11 @@ def save_config():
     new_config['LIBERTALIA']['username'] = LIBERTALIA_USERNAME
     new_config['LIBERTALIA']['password'] = LIBERTALIA_PASSWORD
     
+    new_config['SOTORRENT'] = {}
+    new_config['SOTORRENT']['sotorrent'] = int(SOTORRENT)
+    new_config['SOTORRENT']['username'] = SOTORRENT_USERNAME
+    new_config['SOTORRENT']['password'] = SOTORRENT_PASSWORD
+
     new_config['XTHOR'] = {}
     new_config['XTHOR']['xthor'] = int(XTHOR)
     new_config['XTHOR']['username'] = XTHOR_USERNAME
