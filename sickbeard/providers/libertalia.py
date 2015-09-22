@@ -34,10 +34,10 @@ class LIBERTALIAProvider(generic.TorrentProvider):
         
         generic.TorrentProvider.__init__(self, "LIBERTALIA")
 
-        self.supportsBacklog = False
+        self.supportsBacklog = True
         
         self.cj = cookielib.CookieJar()
-        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj))
+        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj), context=ssl._create_unverified_context())
         
         self.url = "https://libertalia.me"
         
