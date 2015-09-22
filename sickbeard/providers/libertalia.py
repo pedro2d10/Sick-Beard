@@ -34,7 +34,7 @@ class LIBERTALIAProvider(generic.TorrentProvider):
         
         generic.TorrentProvider.__init__(self, "LIBERTALIA")
 
-        self.supportsBacklog = True
+        self.supportsBacklog = False
         
         self.cj = cookielib.CookieJar()
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj))
