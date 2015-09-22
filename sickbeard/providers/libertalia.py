@@ -28,8 +28,6 @@ import urllib
 import urllib2
 import random
 import re
-import ssl
-
 class LIBERTALIAProvider(generic.TorrentProvider):
 
     def __init__(self):
@@ -39,7 +37,7 @@ class LIBERTALIAProvider(generic.TorrentProvider):
         self.supportsBacklog = True
         
         self.cj = cookielib.CookieJar()
-        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj), context=ssl._create_unverified_context())
+        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj))
         
         self.url = "https://libertalia.me"
         
