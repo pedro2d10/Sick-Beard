@@ -23,6 +23,9 @@ if sys.version_info >= (2, 7, 9):
 import urllib
 import os.path
 import ConfigParser
+import sickbeard
+
+from sickbeard import logger
 
 class AuthURLOpener(urllib.FancyURLopener):
     def __init__(self, user, pw):
@@ -30,6 +33,7 @@ class AuthURLOpener(urllib.FancyURLopener):
         self.password = pw
         self.numTries = 0
         if sys.version_info >= (2, 7, 9):
+			logger.log(u"sys.version_info "+sys.version_info, logger.ERROR)
 			urllib.FancyURLopener.__init__(self, context=ssl._create_unverified_context())
 		else:
 			urllib.FancyURLopener.__init__(self)
