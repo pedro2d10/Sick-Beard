@@ -28,6 +28,7 @@ import urllib
 import urllib2
 import random
 import re
+import ssl
 class LIBERTALIAProvider(generic.TorrentProvider):
 
     def __init__(self):
