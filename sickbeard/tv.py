@@ -1011,7 +1011,7 @@ class TVShow(object):
     
     def searchFrench(self, show):
         logger.log("Sending french episodes search")
-        FrenchFinder('force',show)
+        FrenchFinder.run('force',show)
         return
 
     def saveToDB(self):
